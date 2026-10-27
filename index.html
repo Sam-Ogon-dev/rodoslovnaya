@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Родословная Краевых и Дорошенко</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f4ee; --surface:#fffdf9; --surface-2:#f1ece2; --ink:#2b2622; --ink-2:#5f564d; --ink-3:#8c8278;
+  --line:#ddd3c4; --accent:#8a5a2b; --accent-soft:#f3e6d6;
+  --doc:#2f7d4f; --doc-bg:#e3f2e8; --prob:#2c6a9b; --prob-bg:#e2eef8; --fam:#a3681a; --fam-bg:#fbefdc;
+  --hyp:#6e6a66; --hyp-bg:#ecebe9; --no:#a8423b; --no-bg:#f7e3e1;
+  --shadow:0 1px 2px rgba(60,40,20,.06),0 4px 14px rgba(60,40,20,.06);
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1916; --surface:#24211d; --surface-2:#2c2823; --ink:#ede6dc; --ink-2:#c3b9ac; --ink-3:#958a7e;
+    --line:#3d3730; --accent:#d9a46b; --accent-soft:#3a2d20;
+    --doc:#6fc493; --doc-bg:#1f3428; --prob:#7fb6e3; --prob-bg:#1d2d3b; --fam:#e0a95c; --fam-bg:#3a2c18;
+    --hyp:#aaa49d; --hyp-bg:#2f2c29; --no:#e48a83; --no-bg:#3b2321;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1916; --surface:#24211d; --surface-2:#2c2823; --ink:#ede6dc; --ink-2:#c3b9ac; --ink-3:#958a7e;
+  --line:#3d3730; --accent:#d9a46b; --accent-soft:#3a2d20;
+  --doc:#6fc493; --doc-bg:#1f3428; --prob:#7fb6e3; --prob-bg:#1d2d3b; --fam:#e0a95c; --fam-bg:#3a2c18;
+  --hyp:#aaa49d; --hyp-bg:#2f2c29; --no:#e48a83; --no-bg:#3b2321;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent)}
+h1,h2,h3{font-family:"PT Serif",Georgia,serif;font-weight:700;line-height:1.2;margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+header.hero{padding:40px 0 22px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--surface-2),var(--bg))}
+.hero h1{font-size:clamp(28px,4.4vw,44px);letter-spacing:-.01em}
+.hero p.sub{color:var(--ink-2);margin:10px 0 0;max-width:780px}
+.hero .meta{margin-top:14px;color:var(--ink-3);font-size:13px}
+nav.toc{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:8px;padding-bottom:8px;scrollbar-width:none}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--ink-2);font-size:13.5px;padding:6px 11px;border-radius:999px}
+nav.toc a:hover{background:var(--surface-2);color:var(--ink)}
+nav.toc .sp{flex:1}
+nav.toc button{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:999px;font:inherit;font-size:13px;padding:5px 11px;cursor:pointer;white-space:nowrap}
+section{padding:34px 0 8px}
+section>.wrap>h2{font-size:26px;margin-bottom:6px}
+.lead{color:var(--ink-2);margin:0 0 18px;max-width:820px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}
+.pad{padding:16px 18px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.s-doc{color:var(--doc);background:var(--doc-bg)} .s-prob{color:var(--prob);background:var(--prob-bg)}
+.s-fam{color:var(--fam);background:var(--fam-bg)} .s-hyp{color:var(--hyp);background:var(--hyp-bg)} .s-no{color:var(--no);background:var(--no-bg)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:0 0 16px}
+.legend span.t{color:var(--ink-3);font-size:13px}
+/* nationalities */
+.nat{padding:16px 18px;border-left:4px solid var(--line)}
+.nat h3{font-size:19px;margin-bottom:6px;display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.nat p{margin:6px 0 0;color:var(--ink-2);font-size:14px}
+.nat.doc{border-left-color:var(--doc)} .nat.prob{border-left-color:var(--prob)} .nat.fam{border-left-color:var(--fam)} .nat.hyp{border-left-color:var(--hyp)}
+.nat .who{font-size:13.5px;color:var(--ink);margin-top:8px}
+/* pedigree */
+.pedi-scroll{overflow-x:auto;padding-bottom:6px}
+.pedi{position:relative;display:grid;grid-template-columns:150px 190px 215px 230px 210px;grid-template-rows:repeat(16,minmax(58px,auto));column-gap:34px;row-gap:6px;min-width:1100px;padding:6px 4px}
+.pedi svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.pedi svg path{fill:none;stroke:var(--line);stroke-width:1.6}
+.gen-h{display:grid;grid-template-columns:150px 190px 215px 230px 210px;column-gap:34px;min-width:1100px;padding:0 4px;margin-bottom:6px;color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.p{align-self:center;position:relative;z-index:1;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px 8px 12px;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s,border-color .12s;text-align:left;font:inherit;color:inherit;width:100%}
+.p:hover,.p:focus-visible{transform:translateY(-1px);border-color:var(--accent);outline:none}
+.p::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:4px;border-radius:4px;background:var(--hyp)}
+.p.doc::before{background:var(--doc)} .p.prob::before{background:var(--prob)} .p.fam::before{background:var(--fam)} .p.hyp::before{background:var(--hyp)}
+.p .n{font-weight:600;font-size:13.5px;line-height:1.3}
+.p .y{font-size:12px;color:var(--ink-3);margin-top:2px;line-height:1.3}
+.p .tag{display:inline-block;margin-top:4px;font-size:11px;font-weight:600;border-radius:6px;padding:1px 6px}
+.p.unknown{background:transparent;border-style:dashed;box-shadow:none;cursor:default;color:var(--ink-3);padding:6px 10px}
+.p.unknown::before{display:none} .p.unknown:hover{transform:none;border-color:var(--line)}
+.p.me{background:var(--accent-soft);border-color:var(--accent)}
+.p.me::before{background:var(--accent)}
+/* lines */
+.line-sec{margin-bottom:18px}
+.line-sec h3{font-size:21px;margin-bottom:4px}
+.line-sec .story{color:var(--ink-2);font-size:14.5px;margin:0 0 12px;max-width:900px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips .p{width:auto;min-width:200px;max-width:300px}
+/* docs */
+.doc-item{padding:14px 16px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px}
+.doc-item .num{font-family:"PT Serif",serif;font-size:22px;color:var(--ink-3);grid-row:span 4;line-height:1}
+.doc-item h4{margin:0;font-size:15px}
+.doc-item .q{font-family:"PT Serif",serif;background:var(--surface-2);border-radius:8px;padding:8px 10px;font-size:14px;color:var(--ink)}
+.doc-item .c{font-size:13.5px;color:var(--ink-2)}
+.doc-item .r{font-size:12.5px;color:var(--ink-3)}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.filters button{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+/* step family */
+.fam-diagram{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.fam-diagram .mid{text-align:center}
+.fam-diagram .box{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface-2);font-size:13.5px}
+.fam-diagram .box b{display:block;font-size:14px}
+.fam-diagram .arrow{color:var(--ink-3);font-size:13px;text-align:center}
+@media (max-width:700px){.fam-diagram{grid-template-columns:1fr}.fam-diagram .arrow{transform:rotate(90deg)}}
+/* conflicts & steps */
+.conf{padding:14px 16px}
+.conf h4{margin:0 0 6px;font-size:15px}
+.conf .vs{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13.5px}
+.conf .vs div{background:var(--surface-2);border-radius:8px;padding:8px 10px}
+.conf .vs small{display:block;color:var(--ink-3);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.conf p{margin:8px 0 0;font-size:13.5px;color:var(--ink-2)}
+@media (max-width:560px){.conf .vs{grid-template-columns:1fr}}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.steps li{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:14px 16px}
+.steps input{width:18px;height:18px;margin-top:3px;accent-color:var(--accent)}
+.steps b{display:block}
+.steps .who{font-size:12px;color:var(--ink-3);margin-top:2px}
+.steps p{margin:4px 0 0;font-size:13.5px;color:var(--ink-2)}
+.steps li.done b{text-decoration:line-through;color:var(--ink-3)}
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(20,14,8,.35);opacity:0;pointer-events:none;transition:opacity .15s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+aside.drawer{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--surface);border-left:1px solid var(--line);z-index:50;transform:translateX(102%);transition:transform .2s ease;overflow-y:auto;box-shadow:-10px 0 30px rgba(0,0,0,.12)}
+aside.drawer.on{transform:none}
+.drawer .hd{position:sticky;top:0;background:var(--surface);padding:18px 20px 12px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.drawer .hd h3{font-size:22px;flex:1}
+.drawer .hd button{border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:8px;width:34px;height:34px;font-size:18px;cursor:pointer;flex:none}
+.drawer .bd{padding:14px 20px 30px}
+.drawer .role{color:var(--ink-3);font-size:13px;margin-top:4px;font-family:Inter,sans-serif;font-weight:400}
+.kv{display:grid;grid-template-columns:118px 1fr;gap:8px 12px;font-size:14px;margin:12px 0}
+.kv dt{color:var(--ink-3)} .kv dd{margin:0}
+.drawer h5{margin:18px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3)}
+.drawer .comment{background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:14px}
+.drawer ul{margin:0;padding-left:18px;font-size:14px}
+.drawer li{margin:4px 0}
+footer{padding:30px 0 50px;color:var(--ink-3);font-size:13px;border-top:1px solid var(--line);margin-top:30px}
+@media print{nav.toc,.scrim,aside.drawer,.filters,#themeBtn{display:none!important}.pedi-scroll{overflow:visible}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>Родословная Краевых и Дорошенко</h1>
+    <p class="sub">Шесть фамильных линий: Краевые, Кузьмины, Магерамовы, Фисенко, Парасоцкие и Манченко. Здесь собрано, что известно со слов семьи и что найдено в архивных базах (ОБД «Мемориал», «Память народа», «Первая мировая», «Открытый список», каталоги FamilySearch), с комментариями и оценкой надёжности. Нажмите на любого человека в древе, чтобы открыть подробности и источники.</p>
+    <div class="meta">Состояние на 27 октября 2026 г. · Для живых родственников указаны только годы рождения</div>
+  </div>
+</header>
+<nav class="toc" aria-label="Разделы">
+  <div class="wrap">
+    <a href="#nat">Национальности</a><a href="#tree">Древо</a><a href="#lines">Линии рода</a><a href="#ded">Дед Иван / Вагиф</a><a href="#docs">Найденные документы</a><a href="#conf">Противоречия</a>
+    <span class="sp"></span><button id="themeBtn" type="button">Тема</button>
+  </div>
+</nav>
+
+<main>
+<section id="nat"><div class="wrap">
+  <h2>Национальности в роду</h2>
+  <p class="lead">Отдельно показано, что прямо записано в документах, и что пока остаётся преданием или гипотезой. Записанная в советском документе национальность не обязательно совпадает с происхождением: кубанские семьи украинского происхождения часто записывали русскими.</p>
+  <div class="legend">
+    <span class="badge s-doc">Документ</span><span class="badge s-prob">Вероятно (документ найден, тождество не доказано)</span><span class="badge s-fam">Со слов семьи</span><span class="badge s-hyp">Гипотеза</span><span class="badge s-no">Исключено</span>
+  </div>
+  <div class="grid g2">
+    <div class="card nat prob"><h3>Азербайджанцы <span class="badge s-prob">вероятно</span></h3>
+      <p>Список № 248 Кедабекского военкомата, 2 апреля 1943 г.: «Магерамов Каграман Гусеин, 1896… <b>азерб.</b>… место жительства <b>Захмет</b>». Совпадают имя, отчество (Гусеин = Хусейн), село (семья подтвердила: Захмет — в Азербайджане) и возраст (старше бабушки Лизы).</p>
+      <div class="who">Прадед Кахраман Магерамов → дед Иван Романович (Вагиф) — по отцу азербайджанец.</div></div>
+    <div class="card nat doc"><h3>Русские <span class="badge s-doc">документ</span></h3>
+      <p>Списки призыва Западного РВК, 1943/44: «Парасоцкий Иван Захарович, 1926… б/п, <b>русский</b>» (в графе «национальность» знак повторения от явного «русский»). Бабушка Валентина родилась в Галиче (Костромская обл.): Кузьмины, вероятно, русские (гипотеза).</p>
+      <div class="who">Прадед Иван Захарович Парасоцкий; вероятно — Кузьмины.</div></div>
+    <div class="card nat doc"><h3>Украинские (малороссийские казачьи) корни <span class="badge s-doc">документ</span></h3>
+      <p>Метрика 1903 г.: бабушка Лиза — дочь «васютинского козака» Никиты Петрова Фесенко, оба родителя «православные». Казаки Полтавщины — потомки гетманского казачества, то есть украинская линия. Гипотезы: Парасоцкие (Новый Егорлык, переселенцы с Харьковщины и Полтавщины), Манченко и Краевые — фамилии украинского типа.</p>
+      <div class="who">Фесенко (документ); Парасоцкие, Манченко, Краевые (гипотеза).</div></div>
+    <div class="card nat fam"><h3>Польская и/или еврейская линия <span class="badge s-no">не подтвердилась</span></h3>
+      <p>Предание: мать деда — «польская еврейка», её предки — «жалованные дворяне» из Краковского воеводства. Метрика 1903 г. показывает другое: отец — козак, оба родителя православные, фамилия Фесенко. Совсем исключить предание нельзя (могло относиться к кому-то другому или к более дальним предкам), но для родителей бабушки Лизы оно не подтверждается.</p>
+      <div class="who">Прабабушка Елизавета Никитична и её родители.</div></div>
+  </div>
+</div></section>
+
+<section id="tree"><div class="wrap">
+  <h2>Древо</h2>
+  <p class="lead">Слева направо: вы → родители → бабушки и дедушки → прадеды → прапрадеды. Цвет полоски у карточки — надёжность. Пунктир — человек неизвестен.</p>
+  <div class="pedi-scroll">
+    <div class="gen-h"><div>Вы</div><div>Родители</div><div>Бабушки и дедушки</div><div>Прадеды</div><div>Прапрадеды</div></div>
+    <div class="pedi" id="pedi"><svg id="links" aria-hidden="true"></svg></div>
+  </div>
+</div></section>
+
+<section id="lines"><div class="wrap">
+  <h2>Линии рода</h2>
+  <p class="lead">Каждая линия — коротко, с комментарием. Карточки кликабельны.</p>
+  <div id="linesBox"></div>
+</div></section>
+
+<section id="ded"><div class="wrap">
+  <h2>Дед Иван Романович — он же Вагиф</h2>
+  <p class="lead">Самая запутанная часть древа. По словам семьи: фамилия Дорошенко — от отчима, отчество «Романович» придумано. Документа о перемене ФИО пока нет.</p>
+  <div class="card pad">
+    <div class="fam-diagram">
+      <div class="box"><b>Магерамов Кахраман (Каграман) Хусейн оглы</b>первый муж · с. Захмет · вероятно 1896 г. р., «азерб.»</div>
+      <div class="mid"><div class="box" style="background:var(--accent-soft)"><b>Елизавета Никитична</b>урожд. Фесенко · 1903 · с. Васютинцы</div></div>
+      <div class="box"><b>Иван Дорошенко</b>второй муж · отчим деда · не кровный предок</div>
+      <div class="arrow">↓ сын</div><div></div><div class="arrow">↓ дети</div>
+      <div class="box"><b>Вагиф Кахраман оглы Магирамов → Дорошенко Иван Романович</b>ваш дед · родился в с. Захмет; по паспорту — 1947, г. Гуково</div>
+      <div></div>
+      <div class="box"><b>Леонид Иванович и Раиса Ивановна Дорошенко</b>единоутробные брат и сестра деда</div>
+    </div>
+  </div>
+</div></section>
+
+<section id="docs"><div class="wrap">
+  <h2>Найденные документы</h2>
+  <p class="lead">Что именно нашлось, где лежит и что из этого следует. Цитаты даны так, как написано в источнике.</p>
+  <div class="filters" id="docFilters" role="group" aria-label="Фильтр документов">
+    <button type="button" data-f="all" aria-pressed="true">Все</button>
+    <button type="button" data-f="ours" aria-pressed="false">О наших предках</button>
+    <button type="button" data-f="ctx" aria-pressed="false">Однофамильцы и контекст</button>
+  </div>
+  <div class="grid" id="docList"></div>
+</div></section>
+
+<section id="conf"><div class="wrap">
+  <h2>Противоречия и открытые вопросы</h2>
+  <p class="lead">Ни одну версию не выбираем без документа. Под каждой — что поможет разобраться.</p>
+  <div class="grid g2" id="confList"></div>
+</div></section>
+
+</main>
+
+<footer><div class="wrap">
+  Дело <code>kraevoy-doroshenko-case</code>: полный отчёт — <code>final-report.md</code>, реестры людей, документов, утверждений и связей — CSV-файлы в той же папке. Записи о живых родственниках минимальны. Статусы: «документ» — прочитано в архивном скане; «вероятно» — запись найдена, но то, что это именно наш человек, не доказано; «со слов семьи» — рассказ родственников; «гипотеза» — вывод по косвенным признакам.
+</div></footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-labelledby="dTitle">
+  <div class="hd"><h3 id="dTitle"></h3><button type="button" id="dClose" aria-label="Закрыть">×</button></div>
+  <div class="bd" id="dBody"></div>
+</aside>
+
+<script>
+const ST={doc:['Документ','s-doc'],prob:['Вероятно','s-prob'],fam:['Со слов семьи','s-fam'],hyp:['Гипотеза','s-hyp'],no:['Исключено','s-no']};
+const L={
+ pn_iz:'https://pamyat-naroda.ru/heroes/person-hero124981428/',
+ pn_iz54:'https://pamyat-naroda.ru/heroes/rvk-chelovek_voenkomat43690734/',
+ pn_iz49:'https://pamyat-naroda.ru/heroes/rvk-chelovek_voenkomat43690676/',
+ obd_iz:'https://obd-memorial.ru/html/info.htm?id=65422976',
+ pn_kag:'https://pamyat-naroda.ru/heroes/memorial-chelovek_vpp1997957576/',
+ zahmet:'https://en.wikipedia.org/wiki/Z%C9%99hm%C9%99tk%C9%99nd',
+ obd_konst:'https://obd-memorial.ru/html/info.htm?id=71503213',
+ obd_petr:'https://obd-memorial.ru/html/info.htm?id=76758359',
+ obd_stepan:'https://obd-memorial.ru/html/info.htm?id=85501099',
+ ol_aleksei:'https://ru.openlist.wiki/Фесенко_Алексей_Никитич_(1900)',
+ ol_pantelei:'https://ru.openlist.wiki/Краевой_Пантелей_Иванович_(1892)',
+ fs_nik:'https://www.familysearch.org/search/catalog/788636',
+ fs_kaz:'https://www.familysearch.org/search/catalog/824692',
+ obd_kraevoy:'https://obd-memorial.ru/html/search.htm?f=Краевой&ps=100',
+ obd_paras:'https://obd-memorial.ru/html/search.htm?f=Парасоцкий&ps=100',
+ obd_manch:'https://obd-memorial.ru/html/search.htm?f=Манченко&ps=100',
+ obd_magir:'https://obd-memorial.ru/html/search.htm?f=Магирамов&ps=100',
+ pn_ip:'https://pamyat-naroda.ru/heroes/person-hero1808502/',
+ gwar:'https://gwar.mil.ru/heroes/'
+};
+const P={
+ me:{n:'Вы',y:'',st:'me',role:'исследователь'},
+ andreyN:{n:'Краевой Андрей Николаевич',y:'отец',st:'fam',role:'отец',
+   comment:'Живой человек: сведения не собирались, кроме имени.'},
+ irina:{n:'Дорошенко Ирина Ивановна',y:'мать',st:'fam',role:'мать',
+   comment:'Живой человек: сведения не собирались, кроме имени.'},
+ nikolai:{n:'Краевой Николай Андреевич',y:'Краснодарский край · жил в Коми',st:'fam',role:'дед по отцу',
+   alt:'Краевой / Краевый / Краєвий',place:'Краснодарский край (со слов); Республика Коми (проживание)',nat:'не установлена · гипотеза: украинец или русский',
+   comment:'В базах ВОВ под этим ФИО не найден — вероятно, родился после 1927 г. На Кубани фамилия Краевой встречается в двух местах: в станицах у Лабинска (Вознесенская, Отважная, Лабинская, Псебай) и в черноморских станицах (Ирклиевская, Брюховецкая). Как семья попала в Коми, неизвестно: возможны раскулачивание 1930-х, оргнабор на шахты 1950-х или служба.',
+   rel:['Отец — Андрей (по отчеству)','Жена — Валентина Михайловна (Кузьмина)'],
+   src:[['ОБД: 316 записей о Краевых, кубанские гнёзда фамилии',L.obd_kraevoy],['«Открытый список»: Краевой Пантелей Иванович, 1892, ст. Ирклиевская — «украинец» (однофамилец)',L.ol_pantelei]]},
+ valentina:{n:'Краевая (Кузьмина) Валентина Михайловна',y:'1943 · г. Галич',st:'fam',role:'бабушка по отцу',
+   place:'г. Галич, Костромская обл. (в 1943 г. — Ярославская обл.)',nat:'не установлена · вероятно русская',
+   comment:'Кузьмина — девичья фамилия. Прежнее предание «тоже с Кубани» уточнено: родилась в Галиче. Национальность её родителей покажет свидетельство о рождении вашего отца или её собственное.',
+   rel:['Отец — Михаил Кузьмин (по отчеству)','Муж — Николай Андреевич Краевой']},
+ ivanR:{n:'Дорошенко Иван Романович',y:'урожд. Вагиф Кахраман оглы Магирамов · родился в с. Захмет (по паспорту — 1947, Гуково)',st:'fam',role:'дед по матери',
+   alt:'Вагиф Кахраман оглы Магирамов / Магеррамов',place:'фактически — с. Захмет, Кедабекский (Гедабекский) р-н Азербайджана (со слов семьи); по паспорту — г. Гуково, Ростовская обл.',nat:'не установлена · по отцу, вероятно, азербайджанец',
+   comment:'Фамилия Дорошенко — от отчима Ивана Дорошенко, второго мужа бабушки Лизы. Отчество «Романович» придумано (возможно, по созвучию с «Кахраман» — гипотеза). Со слов семьи, фактически он родился в селе Захмет — там же, откуда его отец Кахраман; что было записано в его документах, в семье не помнят. В паспорте — «Гуково, 1947»: место и, возможно, дата могли быть записаны заново при смене ФИО или оформлении через отчима. Это выяснится по записи ЗАГС о рождении или о перемене ФИО.',
+   rel:['Отец — Кахраман (Каграман) Магерамов, Хусейн оглы','Мать — Елизавета Никитична','Отчим — Иван Дорошенко','Единоутробные брат и сестра — Леонид Иванович и Раиса Ивановна Дорошенко','Жена — Любовь Ивановна (Парасоцкая)']},
+ lyubov:{n:'Дорошенко (Парасоцкая) Любовь Ивановна',y:'1951 · конезавод Юловский',st:'fam',role:'бабушка по матери',
+   place:'конезавод Юловский, Целинский р-н, Ростовская обл.',nat:'не установлена',
+   comment:'Её отец Иван Захарович жил по соседству — в Сальске и Новом Егорлыке. Её свидетельство о рождении покажет национальность обоих родителей.',
+   rel:['Отец — Иван Захарович Парасоцкий','Мать — Зинаида Георгиевна (урожд. Манченко)','Муж — Иван Романович Дорошенко']},
+ andreyK:{n:'Андрей Краевой',y:'известен по отчеству',st:'hyp',role:'прадед (отец Николая)',
+   comment:'Среди 22 документов ВОВ на «Краевой Андрей» нет кубанских и коми — все с Украины, из Казахстана или с флота. Без года рождения дальше не найти.'},
+ mikhail:{n:'Михаил Кузьмин',y:'известен по отчеству',st:'hyp',role:'прадед (отец Валентины)',
+   comment:'Валентина родилась в октябре 1943 г.; отец мог быть на фронте. Но Кузьминых Михаилов в ОБД более 3 000 — без года рождения поиск неразрешим.'},
+ kahraman:{n:'Магерамов Кахраман Хусейн оглы',y:'вероятно 1896 · с. Захмет',st:'prob',role:'прадед (отец деда Вагифа)',
+   alt:'Магераммов Кохроман / Кахроман (семья); «Магерамов Каграман Гусеин» (документ 1943); Məhərrəmov Qəhrəman Hüseyn oğlu',
+   place:'с. Захмет (Zəhmətkənd), Кедабекский (Гедабекский) р-н Азербайджанской ССР — совпадает с документом, семья подтвердила',
+   nat:'«азерб.» — в списке военкомата 1943 г.',
+   comment:'В списке № 248 Кедабекского РВК (2 апреля 1943) — «Магерамов Каграман Гусеин, 1896… азерб… негр[амотный]… Захмет». Совпадает всё, что известно: фамилия, имя, отчество, село (семья подтвердила, что Захмет — в Азербайджане, а не у Гори) и то, что он был старше бабушки Лизы (1903). Окончательно связь с дедом подтвердит запись о его рождении (графа «отец»). Среди погибших его нет — возможно, вернулся с войны.',
+   rel:['Отец — Хусейн (по отчеству)','Жена — Елизавета Никитична','Сын — Вагиф (Иван Романович Дорошенко)'],
+   src:[['«Память народа»: Магерамов Каграман Гусеин, список № 248 Кедабекского РВК',L.pn_kag],['Zəhmətkənd — село в Гедабекском районе Азербайджана',L.zahmet],['ОБД: 33 записи «Магирамов» — почти все уроженцы Азербайджанской ССР',L.obd_magir]]},
+ liza:{n:'Елизавета Никитична (урожд. Фесенко)',y:'сентябрь 1903 · с. Васютинцы',st:'doc',role:'прабабушка (мать деда Вагифа)',
+   alt:'Елисавета Фесенко (метрика 1903); в семье — «Фисенковская»; в браке — Дорошенко',
+   place:'с. Васютинцы, Золотоношский уезд Полтавской губернии (ныне Золотоношский р-н Черкасской обл.)',
+   nat:'в метрике не указывается · сословие — козаки, вероисповедание — православное',
+   comment:'Найдена её метрика! Книга рождений Казанской церкви с. Васютинцы за 1903 г., женская запись № 40: «Елисавета. Васютинецъ козакъ Никита Петровъ Фесенко и законная жена его Иулiанiя Дамiанова, оба православные». По индексу — 7 сентября 1903 г. (старый стиль; в семье помнят 2 сентября). На полях — помета, что в 1936 г. по этой записи выдано свидетельство. Это точно она: в тех же книгах у Никиты и Иулиании записаны Ксения (Оксана), Татиана, Иоанн, Пелагия (Полина) и Николай — те самые братья и сёстры из семейного списка. Фамилия в документах — Фесенко, сословие — малороссийские казаки, вера — православная. Предания о польском дворянстве и еврейском происхождении для её родителей документами не подтверждаются.',
+   rel:['Отец — козак Никита Петрович Фесенко (р. 14.09.1863)','Мать — Иулиания Дамиановна (в записи о браке 1885 г. — Даниилова Цынбанова)','Братья и сёстры по метрикам: Николай 1887, Ксения 1889, Татиана 1891, Иоанн 1893, Мария 1895, Пётр 1897, Алексий 1900, Иоанн 1902, Пелагия 1906','Муж 1 — Кахраман Магерамов (сын Вагиф)','Муж 2 — Иван Дорошенко (дети Леонид и Раиса)'],
+   src:[['FamilySearch: запись о рождении Елисаветы Фесенко, 1903','https://www.familysearch.org/ark:/61903/1:1:6XC3-9WP5'],['FamilySearch: метрики Васютинцев, Казанская церковь',L.fs_kaz]]},
+ ivanZ:{n:'Парасоцкий Иван Захарович',y:'1926 · Гюдик / Новый Егорлык',st:'doc',role:'прадед (отец Любови)',
+   place:'пос. Гюдик (Гудик), Яшалтинский р-н; с. Новый Егорлык, Сальский р-н; в 1985 г. — г. Сальск',
+   nat:'«русский» — списки призыва Западного РВК, 1943/44',
+   comment:'Призван 2 февраля 1944 г.; 8 классов, тракторист; сержант 162-й танковой бригады; 12 ноября 1944 г. попал в плен, освобождён; в 1985 г. награждён юбилейным орденом Отечественной войны II степени (жил в Сальске). В списке призыва в графе «национальн.» — знак повторения «—»—» от явного «русский» выше. Новый Егорлык основан в 1808 г. выходцами с Харьковщины, Черниговщины, Полтавщины и Воронежской губернии — корни, вероятно, украинские.',
+   rel:['Отец — Захар (по отчеству)','Жена — Зинаида Георгиевна','Дочь — Любовь Ивановна'],
+   src:[['«Память народа»: карточка Ивана Захаровича',L.pn_iz],['Список призывников 1926 г. р., кадр 54 (строка 13)',L.pn_iz54],['Список призыва, кадр 49 (строка 103)',L.pn_iz49],['ОБД: плен и освобождение, ЦАМО ф. 58 оп. 18003 д. 1424',L.obd_iz]]},
+ zina:{n:'Парасоцкая (Манченко) Зинаида Георгиевна',y:'22.02.1925 · Кубань, Маламино',st:'fam',role:'прабабушка (мать Любови)',
+   place:'«где-то на Кубани» (с её слов); семья жила в с. Маламино (ныне Успенский р-н Краснодарского края)',nat:'не установлена',
+   comment:'Парасоцкая — по мужу, девичья — Манченко. Маламино основано около 1900–1901 гг. в Лабинском отделе Кубанской области; приход Рождество-Богородицкой церкви (1907); в 1919 г. волость перевели в казачье сословие; с 1929 г. — Армавирский район, в 1962–1975 гг. — Новокубанский.',
+   rel:['Отец — Георгий Тихонович Манченко','Мать — Мария (урожд. Фисенко)','Муж — Иван Захарович Парасоцкий']},
+ husein:{n:'Хусейн',y:'по отчеству «Хусейн оглы»',st:'hyp',role:'прапрадед (отец Кахрамана)'},
+ nikita:{n:'Фесенко Никита Петрович',y:'14.09.1863 · козак, с. Васютинцы',st:'doc',role:'прапрадед (отец Елизаветы)',
+   alt:'Никита Петровъ Фесенко (метрики); в семье — «Фисенковский Никита Иванович»',place:'с. Васютинцы, Золотоношский уезд Полтавской губ.',nat:'козак (сословие), православный',
+   comment:'По метрикам (сканы прочитаны): родился 14, крещён 15 сентября 1863 г. в Васютинцах — «козакъ Петръ Михайловъ сынъ Фесенко и законная жена его Евгенiя Николаева дочь, оба православные». 29 сентября 1885 г. в соседних Мойсинцах венчался «казакъ Никита Петровичъ Фесенко», 21 год, первым браком, с казачкой Иулианией Дамиановной Цим…овой; одним из поручителей был некий Никита Иванович Трус — возможно, отсюда семейное «Никита Иванович». В 1903 г. записан «васютинецъ козакъ». Семейные «Иванович», «Фисенковский» и «жалованные дворяне» не подтвердились. Предание «был шерифом, имел жетон» может означать сотского, старосту или волостного старшину — такие должности носили нагрудный знак; документа о должности пока нет.',
+   rel:['Отец — Пётр Михайлович Фесенко; мать — Евгения Николаевна','Жена — Иулиания Дамиановна (Данииловна)','Дети — Николай, Ксения, Татиана, Иоанн, Мария, Пётр, Алексий, Иоанн, Елисавета, Пелагия','Сын Иоанн — вероятно, георгиевский кавалер 1916 г.; сын Алексий — арестован в 1929 г., Ухтпечлаг'],
+   src:[['FamilySearch: рождение Никиты, 1863','https://www.familysearch.org/ark:/61903/1:1:6XH1-S7FC'],['FamilySearch: венчание 1885','https://www.familysearch.org/ark:/61903/1:1:6XH1-PSBW'],['«Открытый список»: Фесенко Алексей Никитич, 1900',L.ol_aleksei]]},
+ zakhar:{n:'Захар Парасоцкий',y:'по отчеству',st:'hyp',role:'прапрадед (отец Ивана Захаровича)',
+   comment:'Его имя может быть в донесении о плене Ивана Захаровича (ЦАМО ф. 58 оп. 18003 д. 1424) — скан пока не удалось прочитать.'},
+ georgy:{n:'Манченко Георгий Тихонович',y:'Маламино?',st:'fam',role:'прапрадед (отец Зинаиды)',
+   nat:'не установлена',
+   comment:'В базах ВОВ под этим ФИО не найден. В ОБД есть «Манченко Константин Захарович, 1905, Успенский р-н, с. Мадымино» — почти наверняка искажённое «Маламино»: Манченко там жили. Есть и «Манченко Пётр Тихонович», краснофлотец, пропал без вести 07.09.1942 у Новороссийска — возможный брат (только по отчеству).',
+   rel:['Отец — Тихон (по отчеству)','Жена — Мария (Фисенко)','Дочь — Зинаида'],
+   src:[['ОБД: Манченко Константин Захарович, Успенский р-н',L.obd_konst],['ОБД: Манченко Пётр Тихонович',L.obd_petr],['ОБД: 812 записей Манченко',L.obd_manch]]},
+ yuliania:{n:'Иулиания Дамиановна (урожд. Цимбал)',y:'вероятно 19.12.1864 · с. Мойсинцы',st:'doc',role:'прапрабабушка (мать Елизаветы)',
+   alt:'Iулiанiя Дамiановна Цим…ова (венчание 1885); Иулiанiя Дамiанова (1903); «Иулиания Цымбал» (рождение 1864, индекс)',
+   place:'с. Мойсинцы — соседнее с Васютинцами село Золотоношского уезда',nat:'казачка, православная',
+   comment:'Венчалась 29 сентября 1885 г. в Мойсинцах: «села Мойсинецъ казачка Iулiанiя Дамiановна Цим…ова, православнаго исповѣданiя, первымъ бракомъ», 21 год. Вероятно, это «Иулiанiя», родившаяся там же 19 декабря 1864 г. у «козака Д[аниила/амиана] Яковлева Цимбала и законной его жены Матроны Наумовой, оба православные» — совпадают имя, село, сословие, фамилия и возраст. Имя её отца в записях семьи пишут то Даниил, то Дамиан.',
+   rel:['Вероятные родители — мойсинецкий козак Даниил (Дамиан) Яковлевич Цимбал и Матрона Наумовна','Муж — козак Никита Петрович Фесенко (венчание 29.09.1885)','Дети — Николай, Ксения, Татиана, Иоанн, Мария, Пётр, Алексий, Иоанн, Елисавета, Пелагия'],
+   src:[['FamilySearch: запись о венчании 1885 (книга с. Мойсинцы)','https://www.familysearch.org/ark:/61903/1:1:6XH1-PSBW'],['FamilySearch: рождение Иулиании Цымбал, 1864','https://www.familysearch.org/ark:/61903/1:1:6VT6-YQTN']]},
+ maria:{n:'Манченко (Фисенко) Мария',y:'отчество не помнят',st:'fam',role:'прапрабабушка (мать Зинаиды)',
+   comment:'Девичья фамилия Фисенко. Рядом с Маламино, в х. Ковалевском Новокубанского р-на, жил «Фисенко Степан Никитович», 1904, записанный «украинец» — однофамилец, родство не установлено.',
+   src:[['ОБД: карточка Фисенко Степана Никитовича',L.obd_stepan]]}
+};
+const U={unknown:true};
+const slots=[
+ ['me'],
+ ['andreyN','irina'],
+ ['nikolai','valentina','ivanR','lyubov'],
+ ['andreyK',U,'mikhail',U,'kahraman','liza','ivanZ','zina'],
+ [U,U,U,U,U,U,U,U,'husein',U,'nikita','yuliania','zakhar',U,'georgy','maria']
+];
+const tagFor=id=>{const p=P[id];if(id==='kahraman')return['азерб. (1943)','s-prob'];if(id==='ivanZ')return['русский (1943/44)','s-doc'];if(id==='liza')return['дочь козака, правосл. (1903)','s-doc'];if(id==='nikita')return['козак (1903)','s-doc'];return null};
+function card(id){
+  if(typeof id!=='string'){const d=document.createElement('div');d.className='p unknown';d.innerHTML='<div class="y">неизвестно</div>';return d}
+  const p=P[id];const b=document.createElement('button');b.type='button';
+  b.className='p '+(p.st==='me'?'me':p.st);b.dataset.id=id;
+  const t=tagFor(id);
+  b.innerHTML='<div class="n"></div><div class="y"></div>'+(t?'<span class="tag '+t[1]+'"></span>':'');
+  b.querySelector('.n').textContent=p.n;b.querySelector('.y').textContent=p.y||'';
+  if(t)b.querySelector('.tag').textContent=t[0];
+  if(p.st!=='me')b.addEventListener('click',()=>openP(id));
+  return b;
+}
+const pedi=document.getElementById('pedi');
+slots.forEach((gen,g)=>{const span=16/gen.length;gen.forEach((id,i)=>{const el=card(id);el.style.gridColumn=(g+1);el.style.gridRow=(i*span+1)+' / span '+span;el.dataset.g=g;el.dataset.i=i;pedi.appendChild(el)})});
+function drawLinks(){
+  const svg=document.getElementById('links');const box=pedi.getBoundingClientRect();let d='';
+  const at=(g,i)=>pedi.querySelector('[data-g="'+g+'"][data-i="'+i+'"]');
+  for(let g=0;g<slots.length-1;g++){slots[g].forEach((_,i)=>{const c=at(g,i);if(!c||c.classList.contains('unknown'))return;
+    const cr=c.getBoundingClientRect();const x1=cr.right-box.left,y1=cr.top+cr.height/2-box.top;
+    [2*i,2*i+1].forEach(j=>{const p=at(g+1,j);if(!p)return;const pr=p.getBoundingClientRect();const x2=pr.left-box.left,y2=pr.top+pr.height/2-box.top;const mx=x1+(x2-x1)/2;
+      d+='M'+x1+' '+y1+' H'+mx+' V'+y2+' H'+x2+' '});});}
+  svg.innerHTML='<path d="'+d+'"/>';
+}
+window.addEventListener('load',drawLinks);window.addEventListener('resize',drawLinks);
+if(document.fonts)document.fonts.ready.then(drawLinks);
+setTimeout(drawLinks,60);
+
+/* lines */
+const lines=[
+ {h:'Краевые',ids:['nikolai','andreyK'],s:'Дед Николай Андреевич — из Краснодарского края, жил в Коми. В базах ВОВ ни его, ни кубанского Андрея Краевого нет. Фамилия на Кубани встречается у Лабинска и в черноморских станицах; документа с национальностью наших Краевых пока нет.'},
+ {h:'Кузьмины',ids:['valentina','mikhail'],s:'Бабушка Валентина Михайловна родилась в 1943 г. в Галиче (Костромская обл.) — коренной русский регион. Для поиска её отца нужен его год рождения.'},
+ {h:'Магерамовы и Фисенко (семья деда Вагифа)',ids:['ivanR','kahraman','liza','nikita','husein'],s:'Отец деда — Кахраман Магерамов из села Захмет: в списке 1943 г. он «азерб.». Мать — Елизавета Никитична из Васютинцев на Полтавщине: по метрике 1903 г. она дочь козака Никиты Петровича Фесенко, оба родителя православные. Предания о польском и еврейском происхождении документами не подтвердились.'},
+ {h:'Парасоцкие и Манченко (семья бабушки Любови)',ids:['lyubov','ivanZ','zina','zakhar','georgy','maria'],s:'Прадед Иван Захарович Парасоцкий (1926) — из Нового Егорлыка Сальского района, в документах 1943/44 г. «русский». Прабабушка Зинаида — урождённая Манченко, семья из кубанского села Маламино; её мать — урождённая Фисенко.'}
+];
+const lb=document.getElementById('linesBox');
+lines.forEach(l=>{const s=document.createElement('div');s.className='card pad line-sec';
+  s.innerHTML='<h3></h3><p class="story"></p><div class="chips"></div>';s.querySelector('h3').textContent=l.h;s.querySelector('.story').textContent=l.s;
+  l.ids.forEach(id=>s.querySelector('.chips').appendChild(card(id)));lb.appendChild(s)});
+
+/* docs */
+const docs=[
+ {k:'ours',st:'doc',h:'Метрическая книга с. Васютинцы, 1903 — рождение Елисаветы Фесенко',q:'«Елисавета. Васютинецъ козакъ Никита Петровъ Фесенко и законная жена его Иулiанiя Дамiанова, оба православные»',c:'Это прабабушка Лиза: совпадают имя, сентябрь 1903, село, отец Никита и пять имён братьев и сестёр. Фамилия — Фесенко, сословие — казаки, вера — православная. На полях — помета о выдаче свидетельства в 1936 г.',r:'ДАЧО ф. 931 оп. 1 д. 1196 (Казанская ц.); FamilySearch фильм 007810846, кадр 125',u:'https://www.familysearch.org/ark:/61903/1:1:6XC3-9WP5'},
+ {k:'ours',st:'doc',h:'Венчание 29.09.1885 (Мойсинцы) и рождение Никиты 14.09.1863 (Васютинцы)',q:'«села Васютинецъ казакъ Никита Петровичъ Фесенко… первымъ бракомъ, 21» и «села Мойсинецъ казачка Iулiанiя Дамiановна Цим…ова… 21»; «Козакъ Петръ Михайловъ сынъ Фесенко и законная жена его Евгенiя Николаева дочь, оба православные»',c:'Ещё поколение вверх: прапрапрадед Пётр Михайлович Фесенко и Евгения Николаевна — казаки. Иулиания — вероятно, дочь мойсинецкого казака Даниила (Дамиана) Яковлевича Цимбала и Матроны Наумовны (род. 19.12.1864).',r:'FamilySearch, «Ukraine, Cherkasy, Church Books, 1734-1930»',u:L.fs_kaz},
+ {k:'ours',st:'doc',h:'Списки призыва Западного РВК, 1943/44 — Парасоцкий Иван Захарович',q:'«Парасоцкий Иван Захарович | 1926 | б/п | —»— | 8 кл. | тракторист … с. Н-Егорлык Сальск. р. Ростов. об.» — в графе «национальн.» выше явно «русский»',c:'Прадед по матери записан русским. Знак повторения в таких списках означает то же значение, что строкой выше.',r:'ЦАМО, «Память народа», кадры 49 и 54 из 251',u:L.pn_iz54},
+ {k:'ours',st:'doc',h:'Донесение: плен и освобождение — Парасоцкий Иван Захарович',q:'«сержант, 162 тбр … попал в плен (освобожден) 12.11.1944»',c:'В этом деле могут быть указаны родственники (отец Захар?) — скан пока не прочитан из-за сбоя отображения.',r:'ЦАМО ф. 58 оп. 18003 д. 1424',u:L.obd_iz},
+ {k:'ours',st:'prob',h:'Список № 248 Кедабекского РВК, 2.4.1943 — Магерамов Каграман Гусеин',q:'«Магерамов Каграман Гусеин | 1896 | —»— | —»— | —»— | негр | Захмет»; в строке 1 явно «азерб б/п»',c:'Вероятно, прадед Кахраман: совпадают ФИО, село (семья подтвердила Захмет в Азербайджане) и возраст. Противоречий не осталось; не хватает лишь документа, прямо связывающего его с дедом.',r:'ЦАМО, «Память народа»',u:L.pn_kag},
+ {k:'ours',st:'prob',h:'Список награждённых Георгиевскими крестами, 1916 — Фисенко Иван Никитович',q:'«ефрейтор, 38-й пехотный Тобольский полк, Георгиевский крест IV-й степени № 543268 … Полтавская губ., Золотоношский уезд, ст. Васютинцы»',c:'Вероятный брат бабушки Лизы (брат Иван, отец Никита, село Васютинцы). Даёт основание думать, что фамилия семьи в документах — Фисенко. Скан пока не просмотрен.',r:'РГВИА ф. 970 оп. 3 д. 1917 (индекс gwar.mil.ru)',u:L.gwar},
+ {k:'ctx',st:'doc',h:'Метрические книги с. Васютинцы за 1903 г.',q:'Николаевская церковь: д. 1215 «Рождения 1901-1906»; Казанская церковь: д. 1196 «Рождения 1899-1904»',c:'Именно здесь найдена запись о рождении Елизаветы (Казанская церковь, д. 1196).',r:'ДАЧО (Черкассы), ф. 931 оп. 1; FamilySearch DGS 7810850 и 7810846',u:L.fs_nik},
+ {k:'ctx',st:'hyp',h:'Манченко Константин Захарович, 1905 — «Успенский р-н, с. Мадымино»',q:'«Краснодарский край, Успенский р-н, с. Мадымино … пропал без вести 08.1942»',c:'Почти наверняка «Маламино»: Манченко жили в селе прабабушки Зинаиды. Родство не установлено.',r:'ЦАМО ф. 58 оп. 977524 д. 187',u:L.obd_konst},
+ {k:'ctx',st:'hyp',h:'Манченко Пётр Тихонович — краснофлотец',q:'«ЧФ БО-4 Новороссийской ВМБ … пропал без вести 07.09.1942, Краснодарский край»',c:'Отчество как у прапрадеда Георгия Тихоновича — возможный брат, но доказательств нет.',r:'ЦВМА ф. 864 оп. 1 д. 1314',u:L.obd_petr},
+ {k:'ctx',st:'hyp',h:'Фесенко Алексей Никитич, 1900 — уроженец Васютинцев',q:'«с. Васютинцы … украинец; арест 4 октября 1929 г.; Ухтпечлаг; освобождён 6 сентября 1932 г.»',c:'Совпадают село, отчество и поколение; но в семейном списке братьев Алексея нет. Совпадение с Коми — линия деда Краевого.',r:'«Открытый список» по Книге памяти Республики Коми, т. 9, ч. 1',u:L.ol_aleksei},
+ {k:'ctx',st:'hyp',h:'Фисенко Степан Никитович, 1904 — х. Ковалевский Новокубанского р-на',q:'«5. Национальность — Украинец … колхозник … пленён 15.11.41, Донбасс»',c:'Однофамилец рядом с Маламино; показывает, как записывали кубанских Фисенко. Родство не установлено.',r:'ЦАМО, картотека 359 ЗСП',u:L.obd_stepan},
+ {k:'ctx',st:'hyp',h:'«Гнёзда» фамилий в ОБД',q:'Краевой — 316 записей (Украина, восток Кубани); Парасоцкий — 86 (Новый Егорлык, Харьковщина); Магирамов — 33 (Азербайджанская ССР); Манченко — 812',c:'Показывают, откуда фамилии родом. О конкретных предках не говорят.',r:'ОБД «Мемориал»',u:L.obd_paras},
+ {k:'ctx',st:'no',h:'Исключено: Парасоцкий Иван Петрович, 1915 — «Русский»',q:'Наградной лист 1945 г., с. Красногвардейское',c:'Сначала был кандидатом в отцы Любови Ивановны; исключён, когда выяснилось, что отец — Иван Захарович.',r:'ЦАМО',u:L.pn_ip}
+];
+const dl=document.getElementById('docList');
+function renderDocs(f){dl.innerHTML='';docs.filter(d=>f==='all'||d.k===f).forEach((d,i)=>{const el=document.createElement('div');el.className='card doc-item';
+  el.innerHTML='<div class="num"></div><h4></h4><div class="q"></div><div class="c"></div><div class="r"></div>';
+  el.querySelector('.num').textContent=String(i+1);
+  const h=el.querySelector('h4');h.textContent=d.h+' ';const bd=document.createElement('span');bd.className='badge '+ST[d.st][1];bd.textContent=ST[d.st][0];h.appendChild(bd);
+  el.querySelector('.q').textContent=d.q;el.querySelector('.c').textContent=d.c;
+  const r=el.querySelector('.r');r.textContent=d.r+' · ';const a=document.createElement('a');a.href=d.u;a.target='_blank';a.rel='noopener';a.textContent='открыть источник';r.appendChild(a);
+  dl.appendChild(el)})}
+renderDocs('all');
+document.querySelectorAll('#docFilters button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#docFilters button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderDocs(b.dataset.f)}));
+
+/* conflicts */
+const confs=[
+ {h:'Где родился дед?',a:['Семья','Фактически — с. Захмет (Азербайджан), село его отца'],b:['Паспорт','1947 г., г. Гуково Ростовской обл.'],p:'Запись ЗАГС о рождении или о перемене ФИО (Ростовская обл.): как и когда появилось «Гуково».'},
+ {h:'Отец бабушки Лизы',a:['Семья','Никита Иванович «Фисенковский», «жалованные дворяне»'],b:['Метрики','козак Никита Петрович Фесенко, православный'],p:'Документ надёжнее; семейная версия, вероятно, сместилась со временем. Скан записи о браке 1885 г. может уточнить происхождение Иулиании.'},
+ {h:'Фисенко на двух ветвях',a:['Ветвь бабушки Лизы','Елизавета Никитична — урожд. Фисенковская/Фисенко'],b:['Ветвь Зинаиды','Мария Манченко — урожд. Фисенко'],p:'Совпадение или путаница в семейной памяти — покажут документы обеих женщин.'},
+ {h:'Место рождения Ивана Захаровича',a:['Сводка «Памяти народа»','пос. Гюдик, Яшалтинский р-н'],b:['Список призыва','с. Новый Егорлык, Сальский р-н'],p:'Соседние районы; запись о рождении 1926 г. или его военный билет.'}
+];
+const cl=document.getElementById('confList');
+confs.forEach(c=>{const el=document.createElement('div');el.className='card conf';
+  el.innerHTML='<h4></h4><div class="vs"><div><small></small><span></span></div><div><small></small><span></span></div></div><p></p>';
+  el.querySelector('h4').textContent=c.h;const v=el.querySelectorAll('.vs div');
+  v[0].querySelector('small').textContent=c.a[0];v[0].querySelector('span').textContent=c.a[1];
+  v[1].querySelector('small').textContent=c.b[0];v[1].querySelector('span').textContent=c.b[1];
+  el.querySelector('p').textContent='Что поможет: '+c.p;cl.appendChild(el)});
+
+/* drawer */
+const dr=document.getElementById('drawer'),sc=document.getElementById('scrim');
+function openP(id){const p=P[id];document.getElementById('dTitle').textContent=p.n;
+  const b=document.getElementById('dBody');b.innerHTML='';
+  const role=document.createElement('div');role.className='role';role.textContent=p.role||'';
+  const st=document.createElement('span');st.className='badge '+ST[p.st][1];st.textContent=ST[p.st][0];
+  const top=document.createElement('div');top.style.display='flex';top.style.gap='10px';top.style.alignItems='center';top.append(st,role);b.appendChild(top);
+  const kv=document.createElement('dl');kv.className='kv';
+  [['Варианты имени',p.alt],['Годы, место',p.y],['Места',p.place],['Национальность',p.nat]].forEach(([k,v])=>{if(!v)return;const dt=document.createElement('dt');dt.textContent=k;const dd=document.createElement('dd');dd.textContent=v;kv.append(dt,dd)});
+  b.appendChild(kv);
+  if(p.comment){const h=document.createElement('h5');h.textContent='Комментарий';const c=document.createElement('div');c.className='comment';c.textContent=p.comment;b.append(h,c)}
+  if(p.rel){const h=document.createElement('h5');h.textContent='Связи';const u=document.createElement('ul');p.rel.forEach(r=>{const li=document.createElement('li');li.textContent=r;u.appendChild(li)});b.append(h,u)}
+  if(p.src){const h=document.createElement('h5');h.textContent='Источники';const u=document.createElement('ul');p.src.forEach(([t,url])=>{const li=document.createElement('li');const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';a.textContent=t;li.appendChild(a);u.appendChild(li)});b.append(h,u)}
+  dr.classList.add('on');sc.classList.add('on');dr.setAttribute('aria-hidden','false');document.getElementById('dClose').focus()}
+function closeP(){dr.classList.remove('on');sc.classList.remove('on');dr.setAttribute('aria-hidden','true')}
+document.getElementById('dClose').addEventListener('click',closeP);sc.addEventListener('click',closeP);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeP()});
+
+/* theme */
+const tb=document.getElementById('themeBtn');
+try{const t=localStorage.getItem('rodo-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+tb.addEventListener('click',()=>{const cur=document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');const n=cur==='dark'?'light':'dark';document.documentElement.dataset.theme=n;try{localStorage.setItem('rodo-theme',n)}catch(e){}setTimeout(drawLinks,30)});
+</script>
+</body>
+</html>
